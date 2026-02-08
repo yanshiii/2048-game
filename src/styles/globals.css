@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+/* Fix mobile viewport height correctly */
+:root {
+  --app-height: 100vh;
+}
+
+@supports (height: 100dvh) {
+  :root {
+    --app-height: 100dvh;
+  }
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: var(--app-height);
+  overflow: hidden;
+}
+
+body {
+  @apply bg-neutral-900 text-neutral-100 antialiased;
+}

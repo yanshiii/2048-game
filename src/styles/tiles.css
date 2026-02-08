@@ -1,0 +1,193 @@
+/* Empty cell */
+.tile-empty {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* Base tile */
+.tile {
+  color: #111;
+}
+
+/* Value-based colors */
+.tile-2   { background: #eee4da; }
+.tile-4   { background: #ede0c8; }
+.tile-8   { background: #f2b179; color: #fff; }
+.tile-16  { background: #f59563; color: #fff; }
+.tile-32  { background: #f67c5f; color: #fff; }
+.tile-64  { background: #f65e3b; color: #fff; }
+
+.tile-128 { background: #edcf72; color: #fff; font-size: 1.5rem; }
+.tile-256 { background: #edcc61; color: #fff; font-size: 1.5rem; }
+.tile-512 { background: #edc850; color: #fff; font-size: 1.5rem; }
+
+.tile-1024 {
+  background: #edc53f;
+  color: #fff;
+  font-size: 1.25rem;
+}
+
+.tile-2048 {
+  background: #edc22e;
+  color: #fff;
+  font-size: 1.25rem;
+}
+
+/* ========================= */
+/* LIGHT MODE – EXTENDED     */
+/* ========================= */
+
+.tile-4096 {
+  background: #f59e0b; /* amber */
+  color: #fff;
+  font-size: 1.15rem;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
+}
+
+.tile-8192 {
+  background: #d97706; /* deep amber */
+  color: #fff;
+  font-size: 1.1rem;
+  box-shadow: 0 0 14px rgba(217, 119, 6, 0.6);
+}
+
+.tile-16384 {
+  background: #b45309; /* burnt orange */
+  color: #fff;
+  font-size: 1.05rem;
+  box-shadow: 0 0 18px rgba(180, 83, 9, 0.75);
+}
+
+/* ========================= */
+/* DARK MODE TILE COLORS     */
+/* ========================= */
+
+[data-theme="dark"] .tile-empty {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .tile {
+  color: #f8fafc;
+  box-shadow: 0 0 0 transparent;
+}
+
+/* Low values – moonlight */
+[data-theme="dark"] .tile-2 {
+  background: #e5e7eb;
+  color: #020617;
+}
+
+[data-theme="dark"] .tile-4 {
+  background: #c7d2fe;
+  color: #020617;
+}
+
+/* Blues */
+[data-theme="dark"] .tile-8 {
+  background: #93c5fd;
+  color: #020617;
+}
+
+[data-theme="dark"] .tile-16 {
+  background: #60a5fa;
+}
+
+[data-theme="dark"] .tile-32 {
+  background: #3b82f6;
+}
+
+/* Indigos */
+[data-theme="dark"] .tile-64 {
+  background: #6366f1;
+}
+
+[data-theme="dark"] .tile-128 {
+  background: #4f46e5;
+  font-size: 1.4rem;
+}
+
+[data-theme="dark"] .tile-256 {
+  background: #4338ca;
+  font-size: 1.4rem;
+}
+
+/* Violets */
+[data-theme="dark"] .tile-512 {
+  background: #6d28d9;
+  font-size: 1.3rem;
+}
+
+[data-theme="dark"] .tile-1024 {
+  background: #7c3aed;
+  font-size: 1.2rem;
+}
+
+[data-theme="dark"] .tile-2048 {
+  background: #8b5cf6;
+  font-size: 1.2rem;
+}
+
+/* ========================= */
+/* EXTENDED VALUES (>2048)   */
+/* ========================= */
+
+[data-theme="dark"] .tile-4096 {
+  background: #22d3ee;
+  color: #020617;
+  box-shadow: 0 0 12px rgba(34, 211, 238, 0.6);
+}
+
+[data-theme="dark"] .tile-8192 {
+  background: #67e8f9;
+  color: #020617;
+  box-shadow: 0 0 16px rgba(103, 232, 249, 0.8);
+}
+
+[data-theme="dark"] .tile-16384 {
+  background: #a5f3fc;
+  color: #020617;
+  box-shadow: 0 0 20px rgba(165, 243, 252, 1);
+}
+
+/* ---------- Animations ---------- */
+
+@keyframes tile-spawn {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes tile-merge {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.tile-spawn {
+  animation: tile-spawn 150ms ease-out;
+}
+
+.tile-merge {
+  animation: tile-merge 180ms ease-in-out;
+}
+
+.tile {
+  transition:
+    background-color 150ms ease,
+    box-shadow 150ms ease,
+    transform 120ms ease;
+}
+
+[data-theme="dark"] .tile {
+  transition: background-color 150ms ease, box-shadow 150ms ease;
+}

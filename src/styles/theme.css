@@ -1,0 +1,16 @@
+:root {
+  --board-bg-dark: rgba(24, 24, 27, 0.92);
+  --board-bg-light: rgba(255, 255, 255, 0.94);
+  --overlay-opacity: 0.45;
+  --background-blur: 6px;
+}
+
+[data-theme="dark"] {
+  --board-bg: rgba(24, 24, 27, 0.92);
+  --text-color: #ffffff;
+}
+
+[data-theme="light"] {
+  --board-bg: rgba(255, 255, 255, 0.94);
+  --text-color: #111111;
+}
