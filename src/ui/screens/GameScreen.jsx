@@ -20,23 +20,18 @@ export default function GameScreen({ game }) {
   } = game;
 
   const touchStartRef = useRef({ x: 0, y: 0 });
-  const gameContainerRef = useRef(null);
 
   /* ---------- Prevent iOS Safari rubber-band ---------- */
   useEffect(() => {
     const preventDefault = (e) => {
-      // Only block single-finger gestures (allow pinch-zoom system gestures)
       if (e.touches && e.touches.length === 1) {
         e.preventDefault();
       }
     };
 
-    // iOS requires this at the DOCUMENT level
-    document.addEventListener("touchstart", preventDefault, { passive: false });
     document.addEventListener("touchmove", preventDefault, { passive: false });
 
     return () => {
-      document.removeEventListener("touchstart", preventDefault);
       document.removeEventListener("touchmove", preventDefault);
     };
   }, []);
@@ -98,13 +93,20 @@ export default function GameScreen({ game }) {
   };
 
   return (
-    <div className="relative z-10 h-full flex items-center justify-center">
-        <div
-          ref={gameContainerRef}
-          className="touch-none"
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
-        ></div>
+    <div className="relative z-10 h-full flex items-center justify-center px-4">
+      <div
+        className="
+          relative
+          w-full max-w-md
+          rounded-2xl
+          p-6
+          bg-black/40
+          backdrop-blur-sm
+          space-y-6
+        "
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
         <ScorePanel score={score} moves={moves} bestScore={bestScore} />
 
         <GameBoard grid={grid} />
@@ -119,27 +121,13 @@ export default function GameScreen({ game }) {
 
         {/* Game Over Overlay */}
         {gameOver && (
-          <div
-            className="
-              absolute inset-0
-              bg-black/60
-              backdrop-blur-sm
-              flex flex-col items-center justify-center
-              rounded-2xl
-              z-20
-            "
-          >
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm flex flex-col items-center justify-center rounded-2xl z-20">
             <div className="text-2xl font-bold mb-4">
               Game Over
             </div>
             <button
               onClick={restartGame}
-              className="
-                px-6 py-2 rounded-xl
-                bg-white text-black
-                hover:bg-neutral-200
-                transition
-              "
+              className="px-6 py-2 rounded-xl bg-white text-black hover:bg-neutral-200 transition"
             >
               Restart
             </button>
@@ -148,16 +136,7 @@ export default function GameScreen({ game }) {
 
         {/* Win Overlay */}
         {hasWon && !gameOver && (
-          <div
-            className="
-              absolute inset-0
-              bg-black/55
-              backdrop-blur-sm
-              flex flex-col items-center justify-center
-              rounded-2xl
-              z-10
-            "
-          >
+          <div className="absolute inset-0 bg-black/55 backdrop-blur-sm flex flex-col items-center justify-center rounded-2xl z-10">
             <div className="text-2xl font-bold mb-3">
               You Win!
             </div>
@@ -165,24 +144,14 @@ export default function GameScreen({ game }) {
             <div className="flex gap-3">
               <button
                 onClick={restartGame}
-                className="
-                  px-4 py-2 rounded-xl
-                  bg-white text-black
-                  hover:bg-neutral-200
-                  transition
-                "
+                className="px-4 py-2 rounded-xl bg-white text-black hover:bg-neutral-200 transition"
               >
                 Restart
               </button>
 
               <button
                 onClick={dismissWin}
-                className="
-                  px-4 py-2 rounded-xl
-                  bg-white/20
-                  hover:bg-white/30
-                  transition
-                "
+                className="px-4 py-2 rounded-xl bg-white/20 hover:bg-white/30 transition"
               >
                 Continue
               </button>
@@ -190,6 +159,6 @@ export default function GameScreen({ game }) {
           </div>
         )}
       </div>
-    // </div>
+    </div>
   );
 }
